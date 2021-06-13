@@ -30,13 +30,17 @@ const products = [
 
 const calculateTotalPrice = function (allProducts, productName) {
   for (const element of allProducts) {
-    if (Object.values(element).includes(productName)) {
-      const { price, quantity } = element;
-      return price * quantity;
+    if (!Object.values(element).includes(productName)) {
+      continue;
     }
+    const { price, quantity } = element;
+    return price * quantity;
   }
+  return `Значение \"${productName}\" отсутсвует в данных объектах.`;
 };
 
 console.log(calculateTotalPrice(products, 'Радар')); // 5200
 
 console.log(calculateTotalPrice(products, 'Дроид')); // 2800
+
+console.log(calculateTotalPrice(products, 'qweqwe')); // 2800
